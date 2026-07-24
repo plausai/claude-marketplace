@@ -62,4 +62,3 @@ or `plugins/` did not bump the relevant version.
 
 - **Vendor-neutral.** No company names, internal tools, or personal references — this is public.
 - **No stubs.** Ship real first-pass content, not `TODO`.
-- **British English** in written content.
