@@ -1,6 +1,6 @@
 {
   "name": "plausai",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "owner": {
     "name": "Plaus AI",
     "url": "https://github.com/plausai"
@@ -16,6 +16,13 @@
       "version": "0.1.0",
       "description": "Standards for how you work — with Claude and with your team. v0.1 ships sycophancy, a critical-thinking-partner mode that makes Claude challenge your reasoning by default instead of agreeing with you.",
       "category": "workflow"
+    },
+    {
+      "name": "team",
+      "source": "./plugins/team",
+      "version": "0.1.0",
+      "description": "An autonomous engineering team in a box. A Director and Visionary report to you (the CEO) from the main conversation and steer 15 role agents — PM, EM, architect, tech lead, staff/backend/AI/platform/DevOps/security engineers, QA, tech writer, ops, finance, marketing — through pipelines with quality gates. Ships /team ceremonies, a per-project charter, a spend ledger with a £50 escalation gate, and guardrail + secret-scan hooks. Opinionated stack: Go, AWS, GitHub; every stack-level decision escalates to you.",
+      "category": "orchestration"
     }
   ]
 }

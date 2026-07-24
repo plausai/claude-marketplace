@@ -1,0 +1,63 @@
+{
+  "name": "team",
+  "version": "0.1.0",
+  "description": "An autonomous engineering team in a box. A Director and Visionary live in the main conversation and report to you (the CEO); they dispatch role agents — PM, EM, architect, tech lead, staff/backend/AI/platform/DevOps/security engineers, QA, tech writer, ops, finance, and marketing — through delivery pipelines with real quality gates. Ships ceremonies as slash commands (/team, plan, build, standup, costs, retro, vision), a per-project team charter, a spend ledger with a £50 escalation gate, and guardrail + secret-scan hooks. Opinionated stack: Go, AWS, GitHub. Every stack-level, spend, or external-facing decision escalates to the CEO.",
+  "author": {
+    "name": "Plaus AI",
+    "url": "https://github.com/plausai"
+  },
+  "homepage": "https://github.com/plausai/claude-marketplace",
+  "keywords": [
+    "team",
+    "orchestration",
+    "agents",
+    "engineering",
+    "autonomous",
+    "go",
+    "aws",
+    "github"
+  ],
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Task|Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/ledger-append.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/guardrails.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/secret-scan.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
