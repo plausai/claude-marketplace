@@ -1,0 +1,11 @@
+# Ownership for the claude-marketplace repo.
+# Each line grants review ownership over the matching path.
+
+# Default owner for everything not matched below.
+*                                   @garrysanders
+
+# Marketplace catalogue.
+/.claude-plugin/                    @garrysanders
+
+# Plugins.
+/plugins/workflow-standards/        @garrysanders

@@ -1,0 +1,17 @@
+{
+  "name": "workflow-standards",
+  "version": "0.1.0",
+  "description": "Workflow standards encoded as Claude Code skills so Claude applies them proactively. v0.1 ships sycophancy — a constructive-disagreement mode for pressure-testing ideas, plans, and drafts instead of being told what you want to hear. Vendor-neutral — no company-specific assumptions.",
+  "author": {
+    "name": "Plaus AI",
+    "url": "https://github.com/plausai"
+  },
+  "homepage": "https://github.com/plausai/claude-marketplace",
+  "keywords": [
+    "workflow",
+    "critical-thinking",
+    "feedback",
+    "decision-making",
+    "sycophancy"
+  ]
+}

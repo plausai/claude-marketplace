@@ -1,0 +1,21 @@
+{
+  "name": "plausai",
+  "version": "0.1.0",
+  "owner": {
+    "name": "Plaus AI",
+    "url": "https://github.com/plausai"
+  },
+  "metadata": {
+    "description": "A curated Claude Code plugin marketplace of skills, agents, and hooks that benefit everyone. Vendor-neutral, general-purpose engineering and workflow standards you can install into any repo.",
+    "homepage": "https://github.com/plausai/claude-marketplace"
+  },
+  "plugins": [
+    {
+      "name": "workflow-standards",
+      "source": "./plugins/workflow-standards",
+      "version": "0.1.0",
+      "description": "Standards for how you work — with Claude and with your team. v0.1 ships sycophancy, a critical-thinking-partner mode that makes Claude challenge your reasoning by default instead of agreeing with you.",
+      "category": "workflow"
+    }
+  ]
+}

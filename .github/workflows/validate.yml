@@ -1,0 +1,18 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run validation
+        env:
+          BASE_BRANCH: ${{ github.base_ref || 'main' }}
+        run: ./scripts/validate.sh
