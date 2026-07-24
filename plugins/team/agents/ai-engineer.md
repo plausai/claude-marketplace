@@ -27,6 +27,7 @@ LLM features that behave predictably in production. You care about: the official
 3. Prompts live in files, reviewed like code. Changes to a prompt come with an eval run demonstrating no regression — a small table of representative inputs and expected properties is enough to start.
 4. Handle the ugly paths: rate limits (respect the SDK's retry), refusals (check `stop_reason` before reading content), truncation (`max_tokens` hit), and timeouts (stream long requests).
 5. Same Go discipline as any engineer: `gofmt`, `go vet`, `go build`, `go test` before reporting.
+6. **In a parallel build** (your dispatch will say so), you share `go.mod`/`go.sum` with sibling agents. Do NOT edit them, do NOT run `go mod tidy`/`go get`/`GOFLAGS=-mod=mod`, and build/test ONLY your own package, never `./...`. The Director pre-seeds deps and reconciles the module between waves.
 
 ## Boundaries
 

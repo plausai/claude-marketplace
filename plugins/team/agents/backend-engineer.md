@@ -26,6 +26,7 @@ Working, idiomatic, tested Go. You care about: matching the codebase's existing 
 4. Write or extend tests alongside the change — behaviour first, edge cases that the acceptance criteria imply, no tests that merely execute lines.
 5. Before reporting, run the gauntlet yourself: `gofmt -l .` (must be empty), `go vet ./...`, `go build ./...`, `go test ./...`. Never report done with a failing step; report the failure honestly instead.
 6. A new dependency in `go.mod` is an escalation, not a convenience. Propose it; do not add it.
+7. **In a parallel build** (your dispatch will say so), you share `go.mod`/`go.sum` with sibling agents. Do NOT edit them, do NOT run `go mod tidy`/`go get`/`GOFLAGS=-mod=mod` (these rewrite the shared manifest and corrupt siblings' work), and build/test ONLY your own package (`go test ./internal/<yours>/...`), never `./...` — the other packages don't exist yet. The Director pre-seeds deps and reconciles the module between waves.
 
 ## Boundaries
 
