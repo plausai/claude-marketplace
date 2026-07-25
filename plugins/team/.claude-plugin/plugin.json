@@ -1,7 +1,7 @@
 {
   "name": "team",
-  "version": "0.1.0",
-  "description": "An autonomous engineering team in a box. A Director and Visionary live in the main conversation and report to you (the CEO); they dispatch role agents — PM, EM, architect, tech lead, staff/backend/AI/platform/DevOps/security engineers, QA, tech writer, ops, finance, and marketing — through delivery pipelines with real quality gates. Ships ceremonies as slash commands (/team, plan, build, standup, costs, retro, vision), a per-project team charter, a spend ledger with a £50 escalation gate, and guardrail + secret-scan hooks. Opinionated stack: Go, AWS, GitHub. Every stack-level, spend, or external-facing decision escalates to the CEO.",
+  "version": "0.1.1",
+  "description": "An autonomous engineering team in a box. A Director and Visionary live in the main conversation and report to you (the CEO); they dispatch role agents \u2014 PM, EM, architect, tech lead, staff/backend/AI/platform/DevOps/security engineers, QA, tech writer, ops, finance, and marketing \u2014 through delivery pipelines with real quality gates. Ships ceremonies as slash commands (/team, plan, build, standup, costs, retro, vision), a per-project team charter, a spend ledger with a \u00a350 escalation gate, and guardrail + secret-scan hooks. Opinionated stack: Go, AWS, GitHub. Every stack-level, spend, or external-facing decision escalates to the CEO.",
   "author": {
     "name": "Plaus AI",
     "url": "https://github.com/plausai"
