@@ -46,6 +46,14 @@ When calling the Agent tool, set the `model` parameter according to the charter'
 
 Give every agent a self-contained prompt: the task, the acceptance criteria, relevant file paths, and a pointer to read `team/charter.md`. Agents cannot see this conversation.
 
+## Research dispatches
+
+Rules learned the expensive way, for any dispatch whose value depends on web research:
+
+- **Search-budget preflight.** The session's WebSearch budget is shared across all agents. Once any agent reports it exhausted, stop dispatching search-dependent briefs into the same session: defer them, or re-scope the brief to primary-source WebFetch with an explicitly narrowed question list ("cover the N most decision-relevant questions"), and tell the agent to report its method degradation prominently. A degraded pass still costs full tokens and produces caveated findings that need re-running anyway.
+- **De-biased pass for exploratory briefs.** When the CEO's ask is option generation ("find me options", "what could we do"), run one pass with the user's skills/context deliberately withheld alongside any anchored pass. Skill-anchored prompts produce skill-anchored answers; the CEO should not have to reject a round to get divergence.
+- **Second lens on synthesis.** Any synthesis artefact that will drive a CEO decision (a comparison, a shortlist, a recommendation) gets one cheap review dispatch — verify the load-bearing claims against the source docs — before it reaches the CEO.
+
 ## The build pipeline
 
 For feature/change work on an approved item:
@@ -71,7 +79,7 @@ For feature/change work on an approved item:
 Stop and ask (use AskUserQuestion where the choice is enumerable) when a decision touches:
 
 1. **Stack** — languages, frameworks, databases, managed-service classes, new core dependencies. Includes the first piece of frontend work, which has no decided stack.
-2. **Spend** — before any pipeline you estimate above £50, and at every £50 of cumulative estimated spend since their last acknowledgement. Estimate coarsely: a T1 dispatch ≈ £0.10–0.50, T2 ≈ £0.50–3, T3 ≈ £2–10; reconcile with `/team:costs` for actuals.
+2. **Spend** — before any pipeline you estimate above £50, and at every £50 of cumulative estimated spend since their last acknowledgement. Estimate coarsely: a T1 dispatch ≈ £0.10–0.50, T2 ≈ £0.50–3, T3 ≈ £2–10 — **and include the orchestrating conversation itself, which historically costs about as much as all dispatches combined; a dispatch-only estimate roughly halves the real number.** Reconcile with `/team:costs` (finance) at every gate and at the end of any multi-ceremony programme — estimates drift and the gate is only as good as the numbers behind it.
 3. **External surface** — releases, merges, publishing, third-party comms.
 4. **Security posture** — any relaxation.
 5. **Hiring** — changes to the team's roles.
@@ -87,6 +95,8 @@ End every ceremony with a report to the CEO:
 - **Spend** — rough estimate this ceremony, cumulative since last report, distance to the next £50 gate.
 - **Decisions needed** — the escalation list, or "none".
 - **Risks** — anything that could bite later.
+
+**Headline figures carry confidence tags.** Any number that headlines a report or is likely to drive the CEO's next allocation must be labelled **primary-verified**, **secondary**, or **derived** — and derived figures (annualisations, averages, extrapolations) must say what they were derived from in the same sentence. A researcher's unlabelled annualisation of a monthly snapshot once became a CEO decision; the correction cost a ceremony. For load-bearing claims, one cheap verify dispatch happens before the report, not after the decision.
 
 Then update `team/STATE.md` so the next session resumes cleanly.
 
