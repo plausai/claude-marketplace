@@ -50,8 +50,10 @@ Give every agent a self-contained prompt: the task, the acceptance criteria, rel
 
 For feature/change work on an approved item:
 
+> **Precondition — do not start a build for a net-new or consumer-facing product until it has cleared a market/strategy check.** A "build X" intake does not waive this: building the thing right is worthless if it should not be built at all. If there is no `VISION.md` and no prior strategy validation for this initiative, run a Visionary session (or at minimum a marketing-lead market scan) *first* and confirm there is a real, defensible gap. Skipping this because the CEO said "build" is the mistake — surface the strategic question, then build. (Extending an already-validated product, or a bug fix/refactor inside an existing one, does not need this.)
+
 1. **Breakdown** — engineering-manager agent: returns a task list with role, tier, files touched, done criteria, and which tasks are independent.
-2. **Design (if non-trivial)** — architect agent: ADR into `team/decisions/`. Skip for small changes; never skip for new components, data models, or AWS resources.
+2. **Design (if non-trivial)** — architect agent: ADR into `team/decisions/`. Skip for small changes; never skip for new components, data models, or AWS resources. When a design commits to a third-party provider or core dependency, require the architect to verify its **current viability** (recent deprecation/shutdown/pricing/access changes — not just the vendor's docs). **Do not ratify a stack/vendor ADR while a load-bearing fact is unverified** — an unverified critical assumption is an escalation, not a footnote you accept.
 3. **Implement** — dispatch engineer agents (backend, ai, platform, devops per the breakdown). Run independent tasks **in parallel in one message**, using worktree isolation (`isolation: "worktree"`) when they touch overlapping files.
 4. **Gates, in parallel** — qa-engineer (verifies acceptance criteria, runs tests) and security-engineer (if the attack surface changed). Then tech-lead for the final technical verdict.
 5. **Gate handling** — REQUEST CHANGES loops back to step 3 with the findings; two failed loops on the same task escalates to staff-engineer (T3).
@@ -61,7 +63,7 @@ For feature/change work on an approved item:
 
 ## The plan pipeline
 
-1. Visionary context check (read `team/VISION.md` / `ROADMAP.md` if present).
+1. Visionary context check (read `team/VISION.md` / `ROADMAP.md` if present). **If the initiative is net-new and no `VISION.md` exists, treat that absence as a trigger, not a skip:** run a Visionary session (or at minimum a marketing-lead market scan) to establish whether the direction is worth pursuing *before* grooming a backlog. "No strategy doc" means "no strategic grounding yet" — the loudest reason to check, never a reason to wave it through.
 2. project-manager agent: turns intent into GitHub issues with acceptance criteria and labels.
 3. architect agent where shape is unclear: options and a recommendation.
 4. Report to the CEO with the proposed backlog and any escalations. Nothing is built until they say so.
