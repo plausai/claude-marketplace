@@ -29,7 +29,10 @@ if [ ! -d "$DIR" ]; then
 fi
 
 shopt -s nullglob
-files=("$DIR"/*.jsonl)
+# Include sub-agent transcripts (<session>/subagents/*.jsonl) — dispatched agents'
+# usage lives there, not in the main session file. Missing them once hid an entire
+# research programme's delivery cost from the £50 spend gate.
+files=("$DIR"/*.jsonl "$DIR"/*/subagents/*.jsonl)
 if [ ${#files[@]} -eq 0 ]; then
   echo '{"by_model":[],"total_usd":0,"total_gbp":0,"sessions":0,"note":"no transcripts found"}'
   exit 0
@@ -74,4 +77,4 @@ jq -s --slurpfile P "$PRICES" '
       total_gbp: (((map(.usd) | add) // 0) * ($prices.fx_usd_to_gbp // 0.78)),
       prices_note: ($prices._notes // "")
     }
-' "${files[@]}" | jq --argjson n "${#files[@]}" '. + {sessions: $n}'
+' "${files[@]}" | jq --argjson n "$(ls "$DIR"/*.jsonl 2>/dev/null | wc -l | tr -d ' ')" --argjson a "${#files[@]}" '. + {sessions: $n, transcript_files: $a}'
